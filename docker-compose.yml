@@ -1,0 +1,73 @@
+version: '3'
+
+# defined docker network for operating systems
+networks:
+  mynetwork:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+services:
+
+  # Kubernetes master
+  master:
+    image: mbwali/centos7-vms:latest
+    restart: always
+    hostname: master.example.com
+    container_name: master
+    # TODO - add via dockerfile
+    extra_hosts:
+      - "${ANSIBLE}"
+      - "${NODE_A}"
+      - "${NODE_B}"
+    tty: true
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.6
+
+  # Ansible controller
+  ansible:
+    image: mbwali/centos7-vms:latest
+    restart: always
+    hostname: ansible.example.com
+    container_name: ansible
+    # TODO - add via dockerfile
+    extra_hosts:
+      - "${MASTER}"
+      - "${NODE_A}"
+      - "${NODE_B}"
+    tty: true
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.7
+
+  # K8 nodeone
+  nodeone:
+    image: mbwali/centos7-vms:latest
+    restart: always
+    hostname: nodeone.example.com
+    container_name: nodeone
+    # TODO - add via dockerfile
+    extra_hosts:
+      - "${MASTER}"
+      - "${ANSIBLE}"
+      - "${NODE_B}"
+    tty: true
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.8
+
+  # K8 nodetwo
+  nodetwo:
+    image: mbwali/centos7-vms:latest
+    restart: always
+    hostname: nodetwo.example.com
+    container_name: nodetwo
+    # TODO - add via dockerfile
+    extra_hosts:
+      - "${MASTER}"
+      - "${ANSIBLE}"
+      - "${NODE_A}"
+    tty: true
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.9
