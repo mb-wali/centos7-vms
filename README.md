@@ -1,14 +1,10 @@
+![Build status](https://github.com/mb-wali/centos7-vms/actions/workflows/docker.yml/badge.svg)
 # Centos7-vms
 Centos 7 OS docker containers.
 
 Ready orchestration of several VMS based on **Centos 7**, 
 pre-configured communication between these VMS.
 
-
-**build**
-```docker
-docker build -t mbwali/centos7-vms:latest ./centos/
-```
 
 **docker compose orchestration**
 This will run all OS of centos7 with static ip addresses
@@ -17,6 +13,7 @@ docker-compose -f docker-compose.yml up -d
 ```
 
 **stop all containers**
+This will stop all running containers.
 ```docker
 docker-compose -f docker-compose.yml down
 ```
