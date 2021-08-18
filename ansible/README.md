@@ -3,9 +3,11 @@
 using Ansible on Centos7 OS.
 
 ## install
+
 ```shell
+docker exec -it <ansiblecontainerid> bash
 yum install epel-release -y
-yum install ansible
+yum install -y ansible
 ```
 
 ### ansible version
