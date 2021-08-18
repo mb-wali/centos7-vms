@@ -8,6 +8,7 @@ RUN yum install -y \
         ca-certificates \
         nano \
         initscripts \
+        git \
         iproute2 iptables net-tools
 
 RUN yum clean -y all
