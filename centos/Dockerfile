@@ -10,9 +10,13 @@ RUN yum install -y \
         initscripts \
         git \
         iproute2 iptables net-tools
-
 RUN yum clean -y all
 
+
+# Install docker
+RUN yum install -y install yum-utils device-mapper-persistent-data lvm2
+RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+RUN yum install docker-ce -y
 
 # Generate keys
 # this would b automaticly added to all the containers

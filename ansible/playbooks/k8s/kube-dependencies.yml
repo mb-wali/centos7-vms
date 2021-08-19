@@ -1,11 +1,13 @@
 - hosts: all
   become: yes # https://docs.ansible.com/ansible/2.4/become.html
   tasks:
-   - name: install Docker
-     yum:
-       name: docker
-       state: present
-       update_cache: true
+  
+  # # installing via Dockefile
+  #  - name: install Docker
+  #    yum:
+  #      name: docker
+  #      state: present
+  #      update_cache: true
        
   # # Cannot start with ansible
   # # Try manully: systemctl start docker
