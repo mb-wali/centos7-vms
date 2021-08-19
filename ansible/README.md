@@ -41,7 +41,7 @@ Inventory = /centos7-vms/ansible/hosts
 4. Add ssh-keyscan to known_host
 ```shell
 chmod +x ./add_ssh-keyscan.sh
-./add_ssh-keyscan
+./add_ssh-keyscan.sh
 ```
 
 **check ansible hosts**
