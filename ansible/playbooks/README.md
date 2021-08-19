@@ -1,9 +1,15 @@
 # Playbooks
 Ansible playbooks are blueprint of automation tasks.
 
-## Configure Kubernetes Cluster using ansible
+**prerequisite.yml**
+Start and enable docker on all vms.
+```shell
+ansible-playbook ./playbooks/k8s/prerequisite.yml
+```
 
-### Prerequisities:
+## Creating Kubernetes cluster with ansible
+
+### Prerequisite:
 
 1. Make an entry of each host in `etc/hosts` file for name resolution on all kubernetes nodes,
 or configure it on DNS if you have DNS server.
@@ -12,25 +18,19 @@ or configure it on DNS if you have DNS server.
 3. kubernetes doen't support "swap". Disable Swap on all nodes using below command and also make it permanent comment out the swap entry in `/etc/fstab` file.
 `swapoff -a`
 
-## Run playbooks to create kubernetes cluster
+### Playbooks
 
-**kube-dependencies.yml**
-
-
-to install kubernetes and nodes 
+**k8s-prerequisite.yml**
 ```shell
-ansible-playbook ./playbooks/k8s/kube-dependencies.yml
+ansible-playbook ./playbooks/k8s/k8s-prerequisite.yml
 ```
 
-**master.yml**
-In this section, you will set up the master node. Before creating any playbooks, however, it’s worth covering a few concepts such as Pods and Pod Network Plugins, since your cluster will include both.
+* Disables SELinux since it is not fully supported by Kubernetes yet.
+* Sets a few netfilter-related sysctl values required for networking. This will allow Kubernetes to set iptables rules for receiving bridged IPv4 and IPv6 network traffic on the nodes.
+* Adds the Kubernetes YUM repository to your remote servers’ repository lists.
+* Installs kubelet and kubeadm.
 
-A pod is an atomic unit that runs one or more containers. These containers share resources such as file volumes and network interfaces in common. Pods are the basic unit of scheduling in Kubernetes: all containers in a pod are guaranteed to run on the same node that the pod is scheduled on.
+The second play consists of a single task that installs kubectl on your master node.
 
-Each pod has its own IP address, and a pod on one node should be able to access a pod on another node using the pod’s IP. Containers on a single node can communicate easily through a local interface. Communication between pods is more complicated, however, and requires a separate networking component that can transparently route traffic from a pod on one node to a pod on another.
-
-This functionality is provided by pod network plugins. For this cluster, you will use Flannel, a stable and performant option.
-
-```shell
-ansible-playbook ./playbooks/k8s/master.yml
-```
+**TODO: Setting Up the Master Node**
+https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-cluster-using-kubeadm-on-centos-7

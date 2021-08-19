@@ -1,17 +1,7 @@
 - hosts: all
   become: yes # https://docs.ansible.com/ansible/2.4/become.html
   tasks:
-
-  # Start docker
-  # OR manually: 
-  # systemctl start docker
-  # systemctl enable docker
-  # systemctl status docker
-   - name: start Docker
-     service:
-       name: docker
-       state: started
-
+  
    - name: ensure net.bridge.bridge-nf-call-ip6tables is set to 1
      sysctl:
       name: net.bridge.bridge-nf-call-ip6tables
