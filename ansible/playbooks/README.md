@@ -32,5 +32,19 @@ ansible-playbook ./playbooks/k8s/k8s-prerequisite.yml
 
 The second play consists of a single task that installs kubectl on your master node.
 
-**TODO: Setting Up the Master Node**
+**(WIP)k8s-master.yml** 
+```shell
+ansible-playbook ./playbooks/k8s/k8s-master.yml
+```
+
+* initialize K8S cluster
+    * api-server-advertise=master ip address
+* create `.kube` directory
+* copy admin.conf
+* install flannel
+
+https://www.youtube.com/watch?v=SrhmT-zzoeA&t=925s @ 22:26
+
+
+
 https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-cluster-using-kubeadm-on-centos-7
