@@ -32,3 +32,4 @@ RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 
 CMD ["/usr/sbin/sshd", "-D"]
+ENTRYPOINT ["/usr/sbin/init"]

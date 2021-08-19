@@ -14,6 +14,7 @@ services:
     restart: always
     hostname: master.example.com
     container_name: master
+    privileged: true
     # TODO - add via dockerfile
     extra_hosts:
       - "${ANSIBLE}"
@@ -30,6 +31,7 @@ services:
     restart: always
     hostname: ansible.example.com
     container_name: ansible
+    privileged: true
     # TODO - add via dockerfile
     extra_hosts:
       - "${MASTER}"
@@ -46,6 +48,7 @@ services:
     restart: always
     hostname: nodeone.example.com
     container_name: nodeone
+    privileged: true
     # TODO - add via dockerfile
     extra_hosts:
       - "${MASTER}"
@@ -62,6 +65,7 @@ services:
     restart: always
     hostname: nodetwo.example.com
     container_name: nodetwo
+    privileged: true
     # TODO - add via dockerfile
     extra_hosts:
       - "${MASTER}"

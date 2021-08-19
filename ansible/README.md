@@ -5,7 +5,7 @@ using Ansible on Centos7 OS.
 ## install
 
 ```shell
-docker exec -it <ansiblecontainerid> bash
+docker exec -it ansible bash
 yum install epel-release -y
 yum install -y ansible
 ```
@@ -38,6 +38,12 @@ which overrides `/etc/ansible/ansible.cfg`
 Inventory = /centos7-vms/ansible/hosts
 ```
 
+4. Add ssh-keyscan to known_host
+```shell
+chmod +x ./add_ssh-keyscan.sh
+./add_ssh-keyscan.sh
+```
+
 **check ansible hosts**
 
 list only master hosts of ansible
@@ -54,6 +60,3 @@ ping all ansible hosts
 ```shell
 ansible -m ping all
 ```
-
-### Playbooks
-Ansible playbooks are blueprint of automation tasks
