@@ -6,18 +6,13 @@
        name: docker
        state: present
        update_cache: true
-
-   - name: start Docker
-     service:
-       name: docker
-       state: started
-
-   - name: disable SELinux
-     command: setenforce 0
-
-   - name: disable SELinux on reboot
-     selinux:
-       state: disabled
+       
+  # # Cannot start with ansible
+  # # Try manully: systemctl start docker
+  #  - name: start Docker
+  #    service:
+  #      name: docker
+  #      state: started
 
    - name: ensure net.bridge.bridge-nf-call-ip6tables is set to 1
      sysctl:
