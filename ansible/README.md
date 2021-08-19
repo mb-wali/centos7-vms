@@ -38,6 +38,12 @@ which overrides `/etc/ansible/ansible.cfg`
 Inventory = /centos7-vms/ansible/hosts
 ```
 
+4. Add ssh-keyscan to known_host
+```shell
+chmod +x ./add_ssh-keyscan.sh
+./add_ssh-keyscan
+```
+
 **check ansible hosts**
 
 list only master hosts of ansible

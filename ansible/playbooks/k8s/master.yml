@@ -1,4 +1,4 @@
-- hosts: master
+- hosts: master.example.com
   become: yes
   tasks:
     - name: initialize the cluster

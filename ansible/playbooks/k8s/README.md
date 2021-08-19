@@ -21,3 +21,7 @@ A pod is an atomic unit that runs one or more containers. These containers share
 Each pod has its own IP address, and a pod on one node should be able to access a pod on another node using the pod’s IP. Containers on a single node can communicate easily through a local interface. Communication between pods is more complicated, however, and requires a separate networking component that can transparently route traffic from a pod on one node to a pod on another.
 
 This functionality is provided by pod network plugins. For this cluster, you will use Flannel, a stable and performant option.
+
+```shell
+ansible-playbook ./playbooks/k8s/master.yml
+```
