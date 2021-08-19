@@ -54,6 +54,3 @@ ping all ansible hosts
 ```shell
 ansible -m ping all
 ```
-
-### Playbooks
-Ansible playbooks are blueprint of automation tasks
