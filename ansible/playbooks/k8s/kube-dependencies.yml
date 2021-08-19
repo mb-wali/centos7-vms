@@ -1,20 +1,16 @@
 - hosts: all
   become: yes # https://docs.ansible.com/ansible/2.4/become.html
   tasks:
-  
-  # # installing via Dockefile
-  #  - name: install Docker
-  #    yum:
-  #      name: docker
-  #      state: present
-  #      update_cache: true
-       
-  # # Cannot start with ansible
-  # # Try manully: systemctl start docker
-  #  - name: start Docker
-  #    service:
-  #      name: docker
-  #      state: started
+
+  # Start docker
+  # OR manually: 
+  # systemctl start docker
+  # systemctl enable docker
+  # systemctl status docker
+   - name: start Docker
+     service:
+       name: docker
+       state: started
 
    - name: ensure net.bridge.bridge-nf-call-ip6tables is set to 1
      sysctl:
