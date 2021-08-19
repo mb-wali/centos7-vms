@@ -1,9 +1,18 @@
 # Playbooks
 Ansible playbooks are blueprint of automation tasks.
 
+**prerequisite.yml**
+Start and enable docker on all vms.
+```shell
+ansible-playbook ./playbooks/k8s/prerequisite.yml
+```
+
+
+
+
 ## Configure Kubernetes Cluster using ansible
 
-### Prerequisities:
+### Prerequisite:
 
 1. Make an entry of each host in `etc/hosts` file for name resolution on all kubernetes nodes,
 or configure it on DNS if you have DNS server.
@@ -12,14 +21,12 @@ or configure it on DNS if you have DNS server.
 3. kubernetes doen't support "swap". Disable Swap on all nodes using below command and also make it permanent comment out the swap entry in `/etc/fstab` file.
 `swapoff -a`
 
-## Run playbooks to create kubernetes cluster
 
-**kube-dependencies.yml**
-
+**k8s-prerequisite.yml**
 
 to install kubernetes and nodes 
 ```shell
-ansible-playbook ./playbooks/k8s/kube-dependencies.yml
+ansible-playbook ./playbooks/k8s/k8s-prerequisite.yml
 ```
 
 **master.yml**

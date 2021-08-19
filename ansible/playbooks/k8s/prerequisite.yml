@@ -1,0 +1,14 @@
+- hosts: all
+  become: yes 
+  tasks:
+
+  # Start docker
+  # OR manually: 
+  # systemctl start docker
+  # systemctl enable docker
+  # systemctl status docker
+   - name: start & enable Docker
+     service:
+       name: docker
+       state: started # systemctl start docker
+       enabled: yes   # systemctl enable docker
