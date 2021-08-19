@@ -4,6 +4,7 @@ using Ansible on Centos7 OS.
 
 ## install
 
+*TODO: install when ansible container starts.*
 ```shell
 docker exec -it ansible bash
 yum install epel-release -y
@@ -59,4 +60,9 @@ ansible all --list-hosts
 ping all ansible hosts
 ```shell
 ansible -m ping all
+```
+
+run playbook
+```shell
+ansible-playbook ./playbooks/k8s/<playbookname>.yml
 ```
