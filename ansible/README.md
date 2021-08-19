@@ -5,7 +5,7 @@ using Ansible on Centos7 OS.
 ## install
 
 ```shell
-docker exec -it <ansiblecontainerid> bash
+docker exec -it ansible bash
 yum install epel-release -y
 yum install -y ansible
 ```
