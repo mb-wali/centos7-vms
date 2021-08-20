@@ -12,6 +12,8 @@ RUN yum install -y \
         iproute2 iptables net-tools
 RUN yum clean -y all
 
+# # for building kernel modules
+# RUN yum install -y kernel-devel kernel-headers
 
 # Install docker
 RUN yum install -y install yum-utils device-mapper-persistent-data lvm2

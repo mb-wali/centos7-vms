@@ -2,10 +2,11 @@
 Ansible playbooks are blueprint of automation tasks.
 
 **prerequisite.yml**
-Start and enable docker on all vms.
 ```shell
 ansible-playbook ./playbooks/k8s/prerequisite.yml
 ```
+* Start & Enable Docker - docker is pre-installed via Dockerfile
+
 
 ## Creating Kubernetes cluster with ansible
 
