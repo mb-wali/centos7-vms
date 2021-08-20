@@ -24,7 +24,7 @@ or configure it on DNS if you have DNS server.
 ```shell
 ansible-playbook ./playbooks/k8s/k8s-prerequisite.yml
 ```
-
+* Disable Swap on all nodes (**Make sure swap is turn off in HOST machine** `swapoff -a`)
 * Disables SELinux since it is not fully supported by Kubernetes yet.
 * Sets a few netfilter-related sysctl values required for networking. This will allow Kubernetes to set iptables rules for receiving bridged IPv4 and IPv6 network traffic on the nodes.
 * Adds the Kubernetes YUM repository to your remote servers’ repository lists.

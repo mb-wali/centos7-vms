@@ -1,7 +1,10 @@
 - hosts: all
   become: yes # https://docs.ansible.com/ansible/2.4/become.html
   tasks:
-  
+
+   - name: Disable swap
+     shell: swapoff -a
+
    - name: ensure net.bridge.bridge-nf-call-ip6tables is set to 1
      sysctl:
       name: net.bridge.bridge-nf-call-ip6tables
