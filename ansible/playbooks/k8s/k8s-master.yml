@@ -11,23 +11,23 @@
     - name: storing logs and generated token for future
       local_action: copy content={{ output.stdout }} dest={{ token_file }}
 
-    #see here for more: https://www.learnitguide.net/2019/01/install-kubernetes-cluster-using-ansible.html
+    # see here for more: https://www.learnitguide.net/2019/01/install-kubernetes-cluster-using-ansible.html
 
-    # - name: create .kube directory
-    #   file:
-    #     path: $HOME/.kube
-    #     state: directory
-    #     mode: 0755
+    - name: create .kube directory
+      file:
+        path: $HOME/.kube
+        state: directory
+        mode: 0755
 
-    # - name: copy admin.conf to user's kube config
-    #   copy:
-    #     src: /etc/kubernetes/admin.conf
-    #     dest: /root/.kube/config
-    #     remote_src: yes
+    - name: copy admin.conf to user's kube config
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /root/.kube/config
+        remote_src: yes
 
-    # - name: install Pod network
-    #   become: yes
-    #   shell: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml >> pod_network_setup.txt
-    #   args:
-    #     chdir: $HOME
-    #     creates: pod_network_setup.txt
+    - name: install Pod network
+      become: yes
+      shell: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml >> pod_network_setup.txt
+      args:
+        chdir: $HOME
+        creates: pod_network_setup.txt
