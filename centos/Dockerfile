@@ -9,11 +9,14 @@ RUN yum install -y \
         nano \
         initscripts \
         git \
+        iptables-devel \
+        gcc \
+        make \
         iproute2 iptables net-tools
 RUN yum clean -y all
 
 # # for building kernel modules
-# RUN yum install -y kernel-devel kernel-headers
+RUN yum install -y kernel-devel kernel-headers
 # RUN rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
 # RUN rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 # RUN yum --enablerepo=elrepo-kernel install -y kernel-ml
