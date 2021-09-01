@@ -17,12 +17,16 @@ services:
     hostname: master.example.com
     container_name: master
     privileged: true
+    cap_add:
+      - ALL
     # TODO - add via dockerfile
     extra_hosts:
       - "${ANSIBLE}"
       - "${NODE_A}"
       - "${NODE_B}"
     tty: true
+    volumes:
+      - /lib/modules:/lib/modules
     networks:
       mynetwork:
         ipv4_address: 172.20.0.6
@@ -34,12 +38,16 @@ services:
     hostname: ansible.example.com
     container_name: ansible
     privileged: true
+    cap_add:
+      - ALL
     # TODO - add via dockerfile
     extra_hosts:
       - "${MASTER}"
       - "${NODE_A}"
       - "${NODE_B}"
     tty: true
+    volumes:
+      - /lib/modules:/lib/modules
     networks:
       mynetwork:
         ipv4_address: 172.20.0.7
@@ -51,12 +59,16 @@ services:
     hostname: nodeone.example.com
     container_name: nodeone
     privileged: true
+    cap_add:
+      - ALL
     # TODO - add via dockerfile
     extra_hosts:
       - "${MASTER}"
       - "${ANSIBLE}"
       - "${NODE_B}"
     tty: true
+    volumes:
+      - /lib/modules:/lib/modules
     networks:
       mynetwork:
         ipv4_address: 172.20.0.8
@@ -68,12 +80,16 @@ services:
     hostname: nodetwo.example.com
     container_name: nodetwo
     privileged: true
+    cap_add:
+      - ALL
     # TODO - add via dockerfile
     extra_hosts:
       - "${MASTER}"
       - "${ANSIBLE}"
       - "${NODE_A}"
     tty: true
+    volumes:
+      - /lib/modules:/lib/modules
     networks:
       mynetwork:
         ipv4_address: 172.20.0.9
