@@ -32,6 +32,7 @@ ansible-playbook ./playbooks/k8s/k8s-prerequisite.yml
 * Installs kubelet and kubeadm.
 
 The second play consists of a single task that installs kubectl on your master node.
+* Restart all machines
 
 **(WIP)k8s-master.yml** 
 ```shell
