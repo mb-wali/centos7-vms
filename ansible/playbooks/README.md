@@ -34,13 +34,17 @@ ansible-playbook ./playbooks/k8s/k8s-prerequisite.yml
 The second play consists of a single task that installs kubectl on your master node.
 * Restart all machines
 
-**(WIP)k8s-master.yml** 
+**(WIP)k8s-master.yml**
+
+keep in mind this playbook might take a while.
 ```shell
 ansible-playbook ./playbooks/k8s/k8s-master.yml
 ```
 
 * initialize K8S cluster
-    * api-server-advertise=master ip address
+    * --ignore-preflight-errors=all # Ignore preflight errors
+    * --api-server-advertise='masternodeip'
+    * --pod-network-cidr='network.subnet'
 * create `.kube` directory
 * copy admin.conf
 * install flannel
