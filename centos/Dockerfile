@@ -13,8 +13,13 @@ RUN yum install -y \
         gcc \
         make \
         iproute2 iptables net-tools \
-        module-init-tools
+        module-init-tools \
+        epel-release \
+        repolist 
 RUN yum clean -y all
+
+# install dpkg
+RUN yum install -y dpkg-devel dpkg-dev
 
 # Install docker
 RUN yum install -y install yum-utils device-mapper-persistent-data lvm2
