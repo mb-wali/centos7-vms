@@ -33,7 +33,7 @@ services:
 
   # Ansible controller
   ansible:
-    image: mbwali/centos7-vms:latest
+    image: mbwali/ansible-controller:latest
     restart: always
     hostname: ansible.example.com
     container_name: ansible
@@ -46,8 +46,8 @@ services:
       - "${NODE_A}"
       - "${NODE_B}"
     tty: true
-    volumes:
-      - /lib/modules:/lib/modules
+    # volumes:
+    #   - /lib/modules:/lib/modules
     networks:
       mynetwork:
         ipv4_address: 172.20.0.7
