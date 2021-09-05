@@ -46,8 +46,6 @@ services:
       - "${NODE_A}"
       - "${NODE_B}"
     tty: true
-    # volumes:
-    #   - /lib/modules:/lib/modules
     networks:
       mynetwork:
         ipv4_address: 172.20.0.7

@@ -2,6 +2,7 @@
 # ANSIBLE
 using Ansible on Centos7 OS.
 
+<del>
 ## install
 
 *TODO: install when ansible container starts.*
@@ -10,6 +11,7 @@ docker exec -it ansible bash
 yum install epel-release -y
 yum install -y ansible
 ```
+</del>
 
 ## Configure ansible hosts
 
