@@ -1,3 +1,7 @@
+# used to copy ssh folder from vms
+# to be able to access the vms passwordless
+FROM mbwali/ansible-controller:latest AS builder
+
 FROM centos:7
 
 # install needed packages
@@ -29,13 +33,6 @@ RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docke
 # K8S - does not support latest
 RUN yum install -y docker-ce-18.06.1.ce-3.el7 
 
-# Generate keys
-# this would b automaticly added to all the containers
-# in order to access the VMS via ssh, we need to create & add the public sshkeys to other VMS.
-RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
-RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
-RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
-
 # Add root pass
 RUN echo 'root:root' | chpasswd
 
@@ -45,6 +42,9 @@ RUN echo 'root:root' | chpasswd
 # Check: nano /etc/ssh/sshd_config
 RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+
+# copy .ssh folder from vms
+COPY --from=builder /root/.ssh/* /root/.ssh/
 
 CMD ["/usr/sbin/sshd", "-D"]
 ENTRYPOINT ["/usr/sbin/init"]
