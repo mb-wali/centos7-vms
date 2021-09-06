@@ -1,0 +1,16 @@
+fatal: [db.example.com
+]: FAILED! => {
+    "changed": false,
+    "changes": {
+        "installed": [
+            "postgresql93-server"
+        ]
+    },
+    "msg": "warning: 
+    /var/cache/yum/x86_64/7/pgdg-centos93/packages/postgresql93-9.3.25-1PGDG.rhel6.x86_64.rpm: 
+    Header V4 DSA/SHA1 Signature, key ID 442df0f8: NOKEY\n\n\nPublic key for postgresql93-libs-9.3.25-1PGDG.rhel6.x86_64.rpm is not installed\n",
+    "rc": 1,
+    "results": [
+        "Loaded plugins: fastestmirror, ovl\nLoading mirror speeds from cached hostfile\n * base: mirror.nextlayer.at\n * epel: mirror.nextlayer.at\n * extras: mirror.nextlayer.at\n * updates: mirror.nextlayer.at\nResolving Dependencies\n--> Running transaction check\n---> Package postgresql93-server.x86_64 0:9.3.25-1PGDG.rhel6 will be installed\n--> Processing Dependency: postgresql93 = 9.3.25-1PGDG.rhel6 for package: postgresql93-server-9.3.25-1PGDG.rhel6.x86_64\n--> Processing Dependency: libpq.so.5()(64bit) for package: postgresql93-server-9.3.25-1PGDG.rhel6.x86_64\n--> Running transaction check\n---> Package postgresql93.x86_64 0:9.3.25-1PGDG.rhel6 will be installed\n---> Package postgresql93-libs.x86_64 0:9.3.25-1PGDG.rhel6 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package                Arch      Version                Repository        Size\n================================================================================\nInstalling:\n postgresql93-server    x86_64    9.3.25-1PGDG.rhel6     pgdg-centos93    4.1 M\nInstalling for dependencies:\n postgresql93           x86_64    9.3.25-1PGDG.rhel6     pgdg-centos93    1.0 M\n postgresql93-libs      x86_64    9.3.25-1PGDG.rhel6     pgdg-centos93    198 k\n\nTransaction Summary\n================================================================================\nInstall  1 Package (+2 Dependent packages)\n\nTotal download size: 5.3 M\nInstalled size: 22 M\nDownloading packages:\nPublic key for postgresql93-9.3.25-1PGDG.rhel6.x86_64.rpm is not installed\n--------------------------------------------------------------------------------\nTotal                                              8.6 MB/s | 5.3 MB  00:00     \n"
+    ]
+}

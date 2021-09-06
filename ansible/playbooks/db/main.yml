@@ -1,6 +1,6 @@
 ---
 - name: Prepare for PostgreSQL
-  hosts: db
+  hosts: database
   become: true
   roles:
     - role: adfinis_sygroup.grub
@@ -24,7 +24,7 @@
         name: postgresql93-server
 
 - name: Initialize PostgreSQL cluster
-  hosts: db
+  hosts: database
   become: true
   become_user: postgres
   gather_facts: false
