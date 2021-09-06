@@ -24,6 +24,7 @@ services:
       - "${ANSIBLE}"
       - "${NODE_A}"
       - "${NODE_B}"
+      - "${DB}"
     tty: true
     volumes:
       - /lib/modules:/lib/modules
@@ -45,6 +46,7 @@ services:
       - "${MASTER}"
       - "${NODE_A}"
       - "${NODE_B}"
+      - "${DB}"
     tty: true
     networks:
       mynetwork:
@@ -64,6 +66,7 @@ services:
       - "${MASTER}"
       - "${ANSIBLE}"
       - "${NODE_B}"
+      - "${DB}"
     tty: true
     volumes:
       - /lib/modules:/lib/modules
@@ -85,9 +88,32 @@ services:
       - "${MASTER}"
       - "${ANSIBLE}"
       - "${NODE_A}"
+      - "${DB}"
     tty: true
     volumes:
       - /lib/modules:/lib/modules
     networks:
       mynetwork:
         ipv4_address: 172.20.0.9
+
+  # postgresql
+  db:
+    image: mbwali/centos7-vms:latest
+    restart: always
+    hostname: db.example.com
+    container_name: db
+    privileged: true
+    cap_add:
+      - ALL
+    # TODO - add via dockerfile
+    extra_hosts:
+      - "${MASTER}"
+      - "${ANSIBLE}"
+      - "${NODE_A}"
+      - "${NODE_B}"
+    tty: true
+    volumes:
+      - /lib/modules:/lib/modules
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.10

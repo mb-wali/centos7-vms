@@ -4,3 +4,6 @@ master.example.com
 [workers]
 nodeone.example.com
 nodetwo.example.com
+
+[database]
+db.example.com

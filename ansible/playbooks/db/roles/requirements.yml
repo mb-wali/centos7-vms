@@ -1,0 +1,3 @@
+---
+- name: adfinis_sygroup.grub
+  src: adfinis-sygroup.grub
