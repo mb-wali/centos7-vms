@@ -98,7 +98,10 @@ services:
 
   # postgresql
   db:
-    image: mbwali/centos7-vms:latest
+    # image: mbwali/centos7-vms:latest
+    build:
+      context: .
+      dockerfile: centos/centos6/Dockerfile
     restart: always
     hostname: db.example.com
     container_name: db
