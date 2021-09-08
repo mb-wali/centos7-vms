@@ -36,7 +36,7 @@ yum install -y ansible
     Inventory = /centos7-vms/ansible/hosts
     ```
 
-4. Add ssh-keyscan to known_host
+4. (optional): Add ssh-keyscan to known_host, this is to skip the initial connection prompt.  
     ```shell
     chmod +x ./add_ssh-keyscan.sh
     ./add_ssh-keyscan.sh
@@ -67,4 +67,36 @@ ansible -m ping all
 **run a playbook**
 ```shell
 ansible-playbook ./playbooks/k8s/<playbookname>.yml
+```
+
+**list all information about the servers**
+```shell
+ansible all -m gather_facts
+```
+
+**list all information about a single server**
+```shell
+ansible all -m gather_facts --limit host@domain.com
+```
+
+**run ansible with specific ssh-key and inventory**
+This command will make a connection to all the servers specified in inventory, and output the status result.
+```bash
+ansible all --key-file ~/.ssh/ansible -i inventory -m 
+```
+`--key-file`- specify ssh key file that has been copied to the servers.
+`-i` - inventory, file where all the server dns or ip is defined.
+`-m` - module, the module that we want to run e.g. ping
+
+## Ansible config file
+**ansible.cfg**
+```cfg
+[defaults]
+
+# the path should match where the hosts file is located in your machine
+inventory = /path/to/file
+
+# if set, always use this private key file for authentication, same as
+# if passing --private-key to ansible or ansible-playbook
+private_key_file = /path/to/file
 ```
