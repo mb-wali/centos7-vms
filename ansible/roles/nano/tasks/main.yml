@@ -1,0 +1,4 @@
+- name: install nano package
+  yum:
+    name: nano
+    state: latest
