@@ -1,17 +1,8 @@
 
 # ANSIBLE
-using Ansible on Centos7 OS.
+Ansible is an open source IT configuration management (CM) and automation platform, provided by Red Hat. It uses human-readable YAML templates so that users can program repetitive tasks to occur automatically, without learning an advanced language.
 
-<del>
-## install
-
-*TODO: install when ansible container starts.*
-```shell
-docker exec -it ansible bash
-yum install epel-release -y
-yum install -y ansible
-```
-</del>
+One of our container `ansible` is running on `Centos7` with Ansible installed.
 
 ## Configure ansible hosts
 
@@ -41,6 +32,7 @@ yum install -y ansible
     chmod +x ./add_ssh-keyscan.sh
     ./add_ssh-keyscan.sh
     ```
+
 ## Ansible commands
 
 **ansible version**
@@ -99,4 +91,8 @@ inventory = /path/to/file
 # if set, always use this private key file for authentication, same as
 # if passing --private-key to ansible or ansible-playbook
 private_key_file = /path/to/file
+
+# default user to use for playbooks if user is not specified
+# (/usr/bin/ansible will use current user as default)
+remote_user = root
 ```
