@@ -111,7 +111,7 @@ use ansible to copy files to the servers.
   tasks: 
   - name: copy default html template
     copy:
-      src: ./path/file # path to your file in ansible controller
+      src: filename.extention # name of file and the file should b in a directory `files`
       dest: /var/www/html/file # path to your server
       owner: root
       group: root
@@ -221,20 +221,13 @@ remote_user = simone
 ## Roles
 Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artifacts based on a known file structure.
 
-```yml
----
-- hosts: all
-  become: true
-  roles:
-    - nano
-```
-
 **Creating roles,** 
 * We need a new directory called `roles`.
 * Inside this directory make a directory for each roles. e.g. `roles/nano`.
 * And then we will create a task directory, e.g. `roles/nano/tasks`.
 inside our tasks directory we will put our playbooks or also called `task_books`.
-* create main.yml e.g. `roles/nano/tasks/main.yml` - which is a **task book** meaning it contains only tasks.
+* create main.yml e.g. `roles/nano/tasks/main.yml` - which is a **task book** meaning it contains only tasks,
+  and add your tasks.
   ```yml
   ---
   - name: install nano package
@@ -245,8 +238,67 @@ inside our tasks directory we will put our playbooks or also called `task_books`
 
 **Using roles**
 
+inside your playbook we can just add the **roles**, and it will pick the role by the name from `roles/<name>/tasks/main.yml`.
+
+```yml
+---
+- hosts: all
+  become: true
+  roles:
+    - nano
+```
 
 https://www.youtube.com/watch?v=tq9sCeQNVYc&list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70&index=14
+
+## (TODO) Using Variables
+Ansible uses variables to manage differences between systems. With Ansible, you can execute tasks and playbooks on multiple different systems with a single command. To represent the variations among those different systems, you can create variables with standard YAML syntax, including lists and dictionaries. You can define these variables in your playbooks, in your inventory, in re-usable files or roles, or at the command line. You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
+
+After you create variables, either by defining them in a file, passing them at the command line, or registering the return value or values of a task as a new variable, you can use those variables in module arguments, in conditional “when” statements, in templates, and in loops.
+
+### (TODO) Host Variables
+create a directory that holds the variables, `/host_vars`.
+this will holds our inventory hosts. lets create one for webservers.
+
+## Handlers: running operations on change
+Sometimes you want a task to run only when a change is made on a machine. For example, you may want to restart a service if a task updates the configuration of that service, but not if the configuration is unchanged. Ansible uses handlers to address this use case. Handlers are tasks that only run when notified. Each handler should have a globally unique name.
+
+**e.g.**
+```yml
+---
+  # task
+  - name: Write the apache config file
+    ansible.builtin.template:
+      src: /srv/httpd.j2
+      dest: /etc/httpd.conf
+    notify:     # task should notify the handler, and it should match the name of handler
+    - Restart apache
+
+  # handler   # this handler runs only if the task above is executed.
+    handlers:
+      - name: Restart apache
+        service:
+          name: httpd
+          state: restarted
+```
+
+
+
+## Templates
+Ansible templates allow you to define text files with variables instead of static values and then replace those variables at playbook runtime.
+An Ansible template is a text file built with the Jinja2 templating language with a `j2` file extension.
+
+```yml
+---
+  - name: use template to replace a file
+    template:    # module we want to use
+      src: /path/template
+      dest: /dest/path 
+      owner: root
+      group: root
+      mode: 0644
+```
+
+**(TODO)e.g.** 
 
 ## Available Plabooks
 
