@@ -218,8 +218,34 @@ ssh simone@127.10.14.125
 remote_user = simone
 ```
 
-## (TODO) Roles
-allows us to split up the task in order to make it easier to understand.
+## Roles
+Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artifacts based on a known file structure.
+
+```yml
+---
+- hosts: all
+  become: true
+  roles:
+    - nano
+```
+
+**Creating roles,** 
+* We need a new directory called `roles`.
+* Inside this directory make a directory for each roles. e.g. `roles/nano`.
+* And then we will create a task directory, e.g. `roles/nano/tasks`.
+inside our tasks directory we will put our playbooks or also called `task_books`.
+* create main.yml e.g. `roles/nano/tasks/main.yml` - which is a **task book** meaning it contains only tasks.
+  ```yml
+  ---
+  - name: install nano package
+    yum:
+      name: nano
+      state: latest
+  ```
+
+**Using roles**
+
+
 https://www.youtube.com/watch?v=tq9sCeQNVYc&list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70&index=14
 
 ## Available Plabooks
