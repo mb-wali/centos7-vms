@@ -1,52 +1,54 @@
 # SSH
 
 ## OpenSSH
-is the client that allow us to use ssh.
-SSH can be Password based or ssh keys based.
+OpenSSH is a suite of secure networking utilities based on the Secure Shell protocol, which provides a secure channel over an unsecured network in a client–server architecture.
 
 ### Setup SSH for servers and ansible controller
-All these key generation is done on ansible controller mashine, or your private pc.
+All these key generation is done on ansible controller machine, or your private computer.
 
-(Note): Initial connection prompt, ansible can automaticly accept the initial prompt.
-to skip this manully we can run this command and past the result for each server on a file called `known_hosts`.
-`ssh-keyscan -H 127.1.1.2`
+**(Note)**: Initial connection prompt, ansible can automaticly accept the initial prompt.
+to skip this manully we can run this command `ssh-keyscan -H 127.1.1.2` and past the result for each server on a file called `known_hosts`.
 
-list **.ssh** folder.
+
+**list .ssh folder**
 ```bash
 ls -la .ssh
 ```
 
-Generate ssh-key, `-t` type, ed25519 - this type is more secure, and its a shorter key.
-`-C` comment almost like a metadata for the key.
+**Generate ssh-key**
 ```bash
 ssh-keygen -t ed25519 -C "key comment here"
 ```
+* `-t` type, ed25519 - this type is more secure, and its a shorter key.
+* `-C` comment almost like a metadata for the key.
 
-#### how to use this ssh-key to connet to other servers?
+
+### Using this ssh-key to connet to other servers
 For this we need to copy the public key to our servers.
 
-Copy the key to servers.
+**Copy the key to servers.**
 ```bash
 ssh-copy-id -i ~/.ssh/id_ed25519.pub <serveripaddress e.g. 172.1.12.12>
 ```
-`-i` stands for input file, after running this command the ssh-key is copied to the server under `~/.ssh/authorized-keys` file. 
+* `-i` stands for input file.
+The command will copy the public key to the server under `~/.ssh/authorized-keys` file. 
+
 
 ### Generate ssh key that is only dedicated to only ansible
 ```bash
 ssh-keygen -t ed25519 -C "ansible"
 ```
-**caution**: not to override the previuse one, we should specify a diffrent path or folder for this ssh.
+**caution**: not to override the previous one, we should specify a different path or folder for this ssh.
+we should copy these public key as well to our servers.
 
-**we should copy these public key as well to our servers.**
-
-#### How to access the Servers with ssh using diffrent keys?
+### Access the Servers with ssh using different keys
 ```bash
 ssh -i ~/.ssh/ansible 172.1.12.12
 ```
-this time we specify the key folder in our ssh command to access the server.
+This time we specify the key folder in our ssh command to access the server.
 
 
-#### how to cache the passphrase of ssh-key that it would not ask for it everytime.
+### Cache the passphrase of ssh-key, so it not ask for it everytime
 ```bash
 eval $(ssh-agent)
 ```

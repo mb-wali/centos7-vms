@@ -64,7 +64,7 @@ declaring ??
 
 ### Package module
 package module is a generic package manager, whatever package manager the underline host or target server uses.
-its practical to use the package name is not diffrent in OS.
+its practical to use if the package name is not different in operating systems.
 ```yml
 ---
 - hosts: all 
@@ -76,7 +76,7 @@ its practical to use the package name is not diffrent in OS.
 ```
 
 ### Tags
-Use tags to add some metadata to our plays, that makes our testing playbook easier to run.
+Use `tags` to add some metadata to our plays, that makes our testing playbook easier to run.
 **tags: always** this will run always.
 
 ```yml
