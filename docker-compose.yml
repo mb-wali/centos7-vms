@@ -10,30 +10,9 @@ networks:
 
 services:
 
-  # Kubernetes master
-  master:
-    image: mbwali/centos7-vms:latest
-    restart: always
-    hostname: master.example.com
-    container_name: master
-    privileged: true
-    cap_add:
-      - ALL
-    # TODO - add via dockerfile
-    extra_hosts:
-      - "${ANSIBLE}"
-      - "${NODE_A}"
-      - "${NODE_B}"
-    tty: true
-    volumes:
-      - /lib/modules:/lib/modules
-    networks:
-      mynetwork:
-        ipv4_address: 172.20.0.6
-
   # Ansible controller
   ansible:
-    image: mbwali/ansible-controller:latest
+    image: mbwali/centos7-ansible:latest
     restart: always
     hostname: ansible.example.com
     container_name: ansible
@@ -42,7 +21,7 @@ services:
       - ALL
     # TODO - add via dockerfile
     extra_hosts:
-      - "${MASTER}"
+      - "${NODE_C}"
       - "${NODE_A}"
       - "${NODE_B}"
     tty: true
@@ -61,7 +40,7 @@ services:
       - ALL
     # TODO - add via dockerfile
     extra_hosts:
-      - "${MASTER}"
+      - "${NODE_C}"
       - "${ANSIBLE}"
       - "${NODE_B}"
     tty: true
@@ -82,7 +61,7 @@ services:
       - ALL
     # TODO - add via dockerfile
     extra_hosts:
-      - "${MASTER}"
+      - "${NODE_C}"
       - "${ANSIBLE}"
       - "${NODE_A}"
     tty: true
@@ -91,3 +70,24 @@ services:
     networks:
       mynetwork:
         ipv4_address: 172.20.0.9
+
+  # nodethree
+  nodethree:
+    image: mbwali/centos7-vms:latest
+    restart: always
+    hostname: nodethree.example.com
+    container_name: nodethree
+    privileged: true
+    cap_add:
+      - ALL
+    # TODO - add via dockerfile
+    extra_hosts:
+      - "${ANSIBLE}"
+      - "${NODE_A}"
+      - "${NODE_B}"
+    tty: true
+    volumes:
+      - /lib/modules:/lib/modules
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.6

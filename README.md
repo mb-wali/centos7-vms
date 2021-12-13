@@ -27,7 +27,13 @@ docker exec -it <containerid> bash
 **now try logging into the machine, with:**
 
 ```shell
-ssh root@master.example.com
+ssh root@nodethree.example.com
 ssh root@nodeone.example.com
 ssh root@nodetwo.example.com
+```
+
+
+## Build
+```bash
+docker build -t mbwali/centos7-vms:latest ./centos
 ```
