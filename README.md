@@ -18,24 +18,10 @@ This will stop all running containers.
 docker-compose -f docker-compose.yml down
 ```
 
-**access one of the VMS**
-
-```shell
-docker exec -it <containerid> bash
-```
-
-**now try logging into the machine, with:**
-
-```shell
-ssh root@nodethree.example.com
-ssh root@nodeone.example.com
-ssh root@nodetwo.example.com
-```
-
 # Ansible controller
 Ansible is an open source IT configuration management (CM) and automation platform, provided by Red Hat. It uses human-readable YAML templates so that users can program repetitive tasks to occur automatically, without learning an advanced language.
 
-One of our container `ansible` is running on `Centos7` with Ansible installed.
+One of our container `ansible` is running on `Centos7` with Ansible installed. which is build by `/ansible-controller/Dockerfile` see also [README](/ansible-controller/README.md)
 
 Access ansible controller machine
 ```bash

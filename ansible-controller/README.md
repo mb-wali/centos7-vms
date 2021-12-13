@@ -1,4 +1,4 @@
-# centos7-ansible
+# ansible-controller
 Ansible controller for https://github.com/mb-wali/centos7-vms
 
 ## Build
