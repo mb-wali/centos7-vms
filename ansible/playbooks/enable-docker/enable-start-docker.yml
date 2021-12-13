@@ -3,6 +3,7 @@
   tasks:
 
   # Start docker
+  # Docker is already installed on vms, we need to only enable them
   # OR manually: 
   # systemctl start docker
   # systemctl enable docker
