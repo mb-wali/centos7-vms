@@ -1,6 +1,6 @@
 # used to copy ssh folder from vms
 # to be able to access the vms passwordless
-FROM mbwali/ansible-controller:latest AS builder
+FROM mbwali/centos7-ansible:latest AS builder
 
 FROM centos:7
 
@@ -44,7 +44,7 @@ RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 
 # copy .ssh folder from vms
-COPY --from=builder /root/.ssh/* /root/.ssh/
+COPY --from=builder /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 CMD ["/usr/sbin/sshd", "-D"]
 ENTRYPOINT ["/usr/sbin/init"]

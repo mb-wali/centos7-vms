@@ -1,6 +1,4 @@
-[masters]
-master.example.com
-
 [workers]
 nodeone.example.com
 nodetwo.example.com
+nodethree.example.com

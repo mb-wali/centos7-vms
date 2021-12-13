@@ -40,10 +40,10 @@ One of our container `ansible` is running on `Centos7` with Ansible installed.
 ansible --version
 ```
 
-**list [master]**
-list only master hosts of ansible
+**list [workers]**
+list only workers hosts of ansible
 ```shell
-ansible masters --list-hosts
+ansible workers --list-hosts
 ```
 
 **list all the hosts of ansible**

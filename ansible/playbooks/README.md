@@ -302,56 +302,10 @@ An Ansible template is a text file built with the Jinja2 templating language wit
 
 ## Available Plabooks
 
-**prerequisite.yml**
+**enable-start-docker.yml**
+Docker is already installed on your vms, this playbook will enable and start the docker daemon.
+
 ```shell
-ansible-playbook ./playbooks/k8s/prerequisite.yml
+ansible-playbook ./playbooks/enable-docker/enable-start-docker.yml
 ```
 * Start & Enable Docker - docker is pre-installed via Dockerfile
-
-
-## Creating Kubernetes cluster with ansible
-
-### Prerequisite:
-
-1. Make an entry of each host in `etc/hosts` file for name resolution on all kubernetes nodes,
-or configure it on DNS if you have DNS server.
-
-2. Make sure kubernetes master and worker nodes are reachable between each other.
-3. kubernetes doen't support "swap". Disable Swap on all nodes using below command and also make it permanent comment out the swap entry in `/etc/fstab` file.
-`swapoff -a`
-
-### Playbooks
-
-**k8s-prerequisite.yml**
-```shell
-ansible-playbook ./playbooks/k8s/k8s-prerequisite.yml
-```
-* Disable Swap on all nodes (**Make sure swap is turn off in HOST machine** `swapoff -a`)
-* Disables SELinux since it is not fully supported by Kubernetes yet.
-* Sets a few netfilter-related sysctl values required for networking. This will allow Kubernetes to set iptables rules for receiving bridged IPv4 and IPv6 network traffic on the nodes.
-* Adds the Kubernetes YUM repository to your remote servers’ repository lists.
-* Installs kubelet and kubeadm.
-
-The second play consists of a single task that installs kubectl on your master node.
-* Restart all machines
-
-**(WIP)k8s-master.yml**
-
-keep in mind this playbook might take a while.
-```shell
-ansible-playbook ./playbooks/k8s/k8s-master.yml
-```
-
-* initialize K8S cluster
-    * --ignore-preflight-errors=all # Ignore preflight errors
-    * --api-server-advertise='masternodeip'
-    * --pod-network-cidr='network.subnet'
-* create `.kube` directory
-* copy admin.conf
-* install flannel
-
-https://www.youtube.com/watch?v=SrhmT-zzoeA&t=925s @ 22:26
-
-
-
-https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-cluster-using-kubeadm-on-centos-7
