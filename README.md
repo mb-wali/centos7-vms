@@ -21,7 +21,7 @@ docker-compose -f docker-compose.yml down
 # Ansible controller
 Ansible is an open source IT configuration management (CM) and automation platform, provided by Red Hat. It uses human-readable YAML templates so that users can program repetitive tasks to occur automatically, without learning an advanced language.
 
-One of our container `ansible` is running on `Centos7` with Ansible installed. which is build by `/ansible-controller/Dockerfile` see also [README](/ansible-controller/README.md)
+One of our container `ansible` is running on `Centos7` with Ansible installed. which is build by `/ansible/Dockerfile` see also [README](/ansible/README.md)
 
 Access ansible controller machine
 ```bash
