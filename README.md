@@ -36,7 +36,6 @@ docker exec -it ansible bash
 
 2. (optional): Add ssh-keyscan to known_host, this is to skip the initial connection prompt.  
     ```shell
-    chmod +x ./add_ssh-keyscan.sh
     ./add_ssh-keyscan.sh
     ```
 
