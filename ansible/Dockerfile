@@ -7,12 +7,14 @@ RUN mkdir /etc/ansible/
 
 # copy hosts file to ansible directory
 COPY hosts /etc/ansible/hosts
+COPY ansible.cfg /etc/ansible/ansible.cfg
 
 # Upgrade Pip so cryptography package works.
 RUN python -m pip install --upgrade pip==20.3.4
 
-# install ansible
-RUN pip install ansible
+# Install Ansible
+RUN yum install -y epel-release -y
+RUN yum install -y ansible
 
 # clone repo
 # ansible playbooks/configurations
