@@ -1,4 +1,5 @@
-[workers]
+[ldap]
 nodeone.example.com
+[workers]
 nodetwo.example.com
 nodethree.example.com
