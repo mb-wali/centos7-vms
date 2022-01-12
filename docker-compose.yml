@@ -42,7 +42,6 @@ services:
     tty: true
     volumes:
       - /lib/modules:/lib/modules
-      - /sys/fs/cgroup:/sys/fs/cgroup
     networks:
       mynetwork:
         ipv4_address: 172.20.0.8
